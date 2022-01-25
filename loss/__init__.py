@@ -1,1 +1,1 @@
-from Loss import *
+from loss.Loss import *
