@@ -15,22 +15,23 @@ class Sequential:
 
 
 class Dense:
-    def __init__(self, in_features, out_features, bias=True):
+    def __init__(self, in_features, out_features):
         self.weights = 0.1 * np.random.randn(in_features, out_features)
-        if bias:
-            self.bias = np.zeros((1, out_features))
+        self.bias = np.zeros((1, out_features))
         self.inputs = None
-        self.grad = None
+        self.gradW = np.zeros_like(self.weights)
+        self.gradb = np.zeros_like(self.bias)
+        self.gradInput = None
+        self.output = None
 
     def forward(self, inputs):
-        if isinstance(self.bias, np.ndarray):
-            self.inputs = np.hstack([inputs, np.full(shape=(1, self.bias.shape[1]), fill_value=1)])
         self.inputs = inputs
-        return np.dot(inputs, self.weights) + self.bias
+        self.output = np.dot(inputs, self.weights) + self.bias
 
-    def backward(self):
-        self.grad = inputs.T
-        return self.grad
+    def backward(self, gradOutput):
+        self.gradW = self.inputs.T @ gradOutput
+        self.gradb = np.sum(gradOutput, axis=0)
+        self.gradInput = gradOutput @ self.weights.T
 
 
 if __name__ == '__main__':
