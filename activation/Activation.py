@@ -4,12 +4,16 @@ import numpy as np
 class ReLU:
     def __init__(self):
         self.output = None
+        self.gradInput = None
+        self.inputs = None
 
     def forward(self, inputs):
+        self.inputs = inputs
         self.output = np.maximum(0, inputs)
 
-    def backward(self):
-        pass
+    def backward(self, gradOutput):
+        self.gradInput = gradOutput.copy()
+        self.gradInput[self.gradInput <= 0] = 0
 
 
 class Sigmoid:
