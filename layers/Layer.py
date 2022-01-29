@@ -34,12 +34,4 @@ class Dense:
         self.gradInput = gradOutput @ self.weights.T
 
 
-if __name__ == '__main__':
-    X, y = spiral_data(points=100, classes=3)
-    print(X.shape)
 
-
-def _show_data():
-    X, y = spiral_data(points=100, classes=3)
-    plt.scatter(X[:, 0], X[:, 1], c=y, cmap='brg')
-    plt.show()

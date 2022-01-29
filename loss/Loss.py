@@ -71,8 +71,3 @@ class MSE:
 
     def backward(self):
         pass
-
-
-if __name__ == '__main__':
-    crossentropy = CrossEntropy()
-    print(crossentropy.forward([[0.7, 0.1, 0.2]], [[1, 0, 0]]))

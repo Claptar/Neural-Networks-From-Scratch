@@ -30,6 +30,7 @@ class Sigmoid:
 class Softmax:
     def __init__(self):
         self.output = None
+        self.gradInput = None
 
     def forward(self, inputs):
         exp_values = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
@@ -43,11 +44,3 @@ class Softmax:
                                     self.output,
                                     self.output)
         self.gradInput = np.einsum("bij, bi -> bj", self.gradInput, gradOutput)
-
-
-if __name__ == '__main__':
-    layer_outputs = [4.8, 1.21, 2.385]
-    softmax = Softmax()
-    softmax.forward([[1, 2, 3]])
-    print(softmax.output)
-
