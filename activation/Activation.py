@@ -35,8 +35,14 @@ class Softmax:
         exp_values = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
         self.output = exp_values / np.sum(exp_values, axis=1, keepdims=True)
 
-    def backward(self):
-        pass
+    def backward(self, gradOutput):
+        self.gradInput = np.einsum("bi, ij -> bij",
+                                   self.output,
+                                   np.eye(self.output.shape[1]))
+        self.gradInput -= np.einsum("bi, bj -> bij",
+                                    self.output,
+                                    self.output)
+        self.gradInput = np.einsum("bij, bi -> bj", self.gradInput, gradOutput)
 
 
 if __name__ == '__main__':
