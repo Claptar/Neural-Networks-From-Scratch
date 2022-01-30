@@ -45,9 +45,3 @@ if __name__ == '__main__':
             print(f'epoch: {epoch}')
             print(f'loss: {loss_output}')
             print(f'acc: {acc}')
-
-
-def _show_data():
-    X, y = spiral_data(points=100, classes=3)
-    plt.scatter(X[:, 0], X[:, 1], c=y, cmap='brg')
-    plt.show()
