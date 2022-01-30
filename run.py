@@ -9,7 +9,6 @@ from optimizers import SGD
 
 if __name__ == '__main__':
     X, y = spiral_data(points=100, classes=3)
-
 # Net initialization
     dense1 = Dense(2, 64)
     activation1 = ReLU()
@@ -17,7 +16,7 @@ if __name__ == '__main__':
 # Loss-func initialization
     loss_activation = SoftmaxCrossEntropy(onehot=False)
 # Optimizer initialization
-    optimizer = SGD()
+    optimizer = SGD(learning_rate=1)
 
     for epoch in range(10001):
         # forward pass
